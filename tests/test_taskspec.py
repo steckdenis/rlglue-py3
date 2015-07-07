@@ -43,7 +43,7 @@ def processTaskSpec(ts):
                 print("=======================================================================================================")
                 print("Version: ["+TaskSpec.getVersion()+"]")
                 print("ProblemType: ["+TaskSpec.getProblemType()+"]")
-                print("DiscountFactor: ["+TaskSpec.getDiscountFactor()+"]")
+                print("DiscountFactor: ["+str(TaskSpec.getDiscountFactor())+"]")
                 print("=======================================================================================================")
                 print("\t \t \t \t Observations")
                 print("=======================================================================================================")
@@ -66,7 +66,7 @@ def processTaskSpec(ts):
                 print("Thus:")
                 print("len(Doubles) ==> ",len(TaskSpec.getDoubleObservations())," Double Observations")
         else:
-                print("Task spec was invalid, but I can try to get version: "+TaskSpec.getVersion();)
+                print("Task spec was invalid, but I can try to get version: "+TaskSpec.getVersion())
                         
 
 

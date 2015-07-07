@@ -30,8 +30,9 @@ import struct
 import array
 import time
 import sys
+import numpy
 
-from io import StringIO
+from io import BytesIO
 
 try:
     import numpy
@@ -92,8 +93,8 @@ class Network:
         
         def __init__(self):
                 self.sock = None
-                self.recvBuffer = StringIO('')
-                self.sendBuffer = StringIO('')
+                self.recvBuffer = BytesIO()
+                self.sendBuffer = BytesIO()
 
                 if 'numpy' in globals():
                     self.getAbstractType = self.getAbstractType_numpy
@@ -119,7 +120,7 @@ class Network:
                 self.sock.sendall(self.sendBuffer.getvalue())
         
         def recv(self,size):
-                s = ''
+                s = b''
                 while len(s) < size:
                         s += self.sock.recv(size - len(s))
                 self.recvBuffer.write(s)
@@ -128,11 +129,11 @@ class Network:
         
         def clearSendBuffer(self):
                 self.sendBuffer.close()
-                self.sendBuffer = StringIO()
+                self.sendBuffer = BytesIO()
         
         def clearRecvBuffer(self):
                 self.recvBuffer.close()
-                self.recvBuffer = StringIO()
+                self.recvBuffer = BytesIO()
         
         def flipSendBuffer(self):
                 self.clearSendBuffer()
@@ -207,7 +208,13 @@ class Network:
         
         def putString(self,value):
                 if value == None:
-                        value = ''
+                        value = b''
+
+                if type(value) is str:
+                        value = bytes(value, encoding='utf-8')
+                else:
+                        value = bytes(value)
+
                 self.putInt(len(value))
                 self.sendBuffer.write(value)
         
@@ -226,7 +233,16 @@ class Network:
                 if len(theItem.doubleArray) > 0:
                         self.sendBuffer.write(struct.pack("!%dd" % (len(theItem.doubleArray)),*(theItem.doubleArray)))
                 if len(theItem.charArray) > 0:
-                        self.sendBuffer.write(struct.pack("!%dc" % (len(theItem.charArray)),*(theItem.charArray)))
+                        cs = theItem.charArray
+
+                        if type(cs[0]) is str:
+                                bts = [bytes(c, encoding='utf-8') for c in cs]
+                        elif type(cs[0]) is numpy.bytes_:
+                                bts = [bytes(c) for c in cs]
+                        else:
+                                bts = cs
+
+                        self.sendBuffer.write(struct.pack("!%dc" % len(bts), *bts))
                 
         def putRewardObservation(self,rewardObservation):
                 self.putInt(rewardObservation.terminal);
@@ -240,11 +256,11 @@ class Network:
                 doubleSize = 0
                 charSize = 0
                 if theItem != None:
-                        if theItem.intArray != None:
+                        if theItem.intArray is not None:
                                 intSize = kIntSize * len(theItem.intArray)
-                        if theItem.doubleArray != None:
+                        if theItem.doubleArray is not None:
                                 doubleSize = kDoubleSize * len(theItem.doubleArray)
-                        if theItem.charArray != None:
+                        if theItem.charArray is not None:
                                 charSize = kCharSize * len(theItem.charArray)
                 return size + intSize + doubleSize + charSize
 

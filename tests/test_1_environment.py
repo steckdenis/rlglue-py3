@@ -79,12 +79,12 @@ class test_1_environment(Environment):
         def env_message(self,inMessage):
                 timesToPrint=self.stepCount%3
                 
-                outMessage=inMessage+"|"
+                outMessage=inMessage + b"|"
                 for i in range(0, timesToPrint):
-                        outMessage=outMessage+"%d" % (self.stepCount)
-                        outMessage=outMessage+"."
+                        outMessage=outMessage + bytes("%d" % (self.stepCount), encoding='ascii')
+                        outMessage=outMessage + b"."
 
-                outMessage=outMessage+"|"+inMessage
+                outMessage=outMessage + b"|" + inMessage
                 
                 return outMessage
         

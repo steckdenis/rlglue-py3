@@ -31,8 +31,8 @@ task_spec=RLGlue.RL_init();
 RLGlue.RL_start();
 
 roat=RLGlue.RL_step();
-tester.check_fail("one|1.|one"!=RLGlue.RL_env_message("one"));
-tester.check_fail("one|1.|one"!=RLGlue.RL_agent_message("one"));
+tester.check_fail(b"one|1.|one"!=RLGlue.RL_env_message("one"));
+tester.check_fail(b"one|1.|one"!=RLGlue.RL_agent_message("one"));
 tester.check_fail(roat.terminal!=0);
 tester.check_fail(roat.r!=1.0);
 tester.check_fail(len(roat.o.intArray)!=1);
@@ -41,8 +41,8 @@ tester.check_fail(len(roat.o. charArray)!=0);
 tester.check_fail(roat.o.intArray[0]!=0);
 
 roat=RLGlue.RL_step();
-tester.check_fail("two|2.2.|two"!=RLGlue.RL_env_message("two"));
-tester.check_fail("two|2.2.|two"!=RLGlue.RL_agent_message("two"));
+tester.check_fail(b"two|2.2.|two"!=RLGlue.RL_env_message("two"));
+tester.check_fail(b"two|2.2.|two"!=RLGlue.RL_agent_message("two"));
 tester.check_fail(roat.terminal!=0);
 tester.check_fail(roat.r!=1.0);
 tester.check_fail(len(roat.o.intArray)!=1);
@@ -51,8 +51,8 @@ tester.check_fail(len(roat.o. charArray)!=0);
 tester.check_fail(roat.o.intArray[0]!=1);
 
 roat=RLGlue.RL_step();
-tester.check_fail("three||three"!=RLGlue.RL_env_message("three"));
-tester.check_fail("three||three"!=RLGlue.RL_agent_message("three"));
+tester.check_fail(b"three||three"!=RLGlue.RL_env_message("three"));
+tester.check_fail(b"three||three"!=RLGlue.RL_agent_message("three"));
 tester.check_fail(roat.terminal!=0);
 tester.check_fail(roat.r!=1.0);
 tester.check_fail(len(roat.o.intArray)!=1);
@@ -61,8 +61,8 @@ tester.check_fail(len(roat.o. charArray)!=0);
 tester.check_fail(roat.o.intArray[0]!=2);
 
 roat=RLGlue.RL_step();
-tester.check_fail("four|4.|four"!=RLGlue.RL_env_message("four"));
-tester.check_fail("four|4.|four"!=RLGlue.RL_agent_message("four"));
+tester.check_fail(b"four|4.|four"!=RLGlue.RL_env_message("four"));
+tester.check_fail(b"four|4.|four"!=RLGlue.RL_agent_message("four"));
 tester.check_fail(roat.terminal!=0);
 tester.check_fail(roat.r!=1.0);
 tester.check_fail(len(roat.o.intArray)!=1);
@@ -72,8 +72,8 @@ tester.check_fail(roat.o.intArray[0]!=3);
 
 
 roat=RLGlue.RL_step();
-tester.check_fail("five|5.5.|five"!=RLGlue.RL_env_message("five"));
-tester.check_fail("five|4.|five"!=RLGlue.RL_agent_message("five"));
+tester.check_fail(b"five|5.5.|five"!=RLGlue.RL_env_message("five"));
+tester.check_fail(b"five|4.|five"!=RLGlue.RL_agent_message("five"));
 tester.check_fail(roat.terminal==0);
 tester.check_fail(roat.r!=1.0);
 
@@ -93,11 +93,11 @@ tester.check_fail(roat.o.doubleArray[1]!=-0.0078125);
 tester.check_fail(roat.o.doubleArray[2]!=0.0);
 tester.check_fail(roat.o.doubleArray[3]!=0.0078125e150);
 tester.check_fail(roat.o.doubleArray[4]!=-0.0078125e150);
-tester.check_fail(roat.o.charArray[0]!='g');
-tester.check_fail(roat.o.charArray[1]!='F');
-tester.check_fail(roat.o.charArray[2]!='?');
-tester.check_fail(roat.o.charArray[3]!=' ');
-tester.check_fail(roat.o.charArray[4]!='&');
+tester.check_fail(roat.o.charArray[0]!=b'g');
+tester.check_fail(roat.o.charArray[1]!=b'F');
+tester.check_fail(roat.o.charArray[2]!=b'?');
+tester.check_fail(roat.o.charArray[3]!=b' ');
+tester.check_fail(roat.o.charArray[4]!=b'&');
 
 print(tester.get_summary())
 sys.exit(tester.getFailCount())
