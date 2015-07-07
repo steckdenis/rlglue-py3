@@ -28,38 +28,38 @@ from rlglue.types import Action
 from rlglue.types import Observation
 
 class test_message_agent(Agent):
-	whichEpisode=0
-	
-	def agent_init(self,taskSpec):
-		pass
-		
-	def agent_start(self,observation):
-		return Action()
-	
-	def agent_step(self,reward, observation):
-		return Action()
-	
-	def agent_end(self,reward):
-		pass
-	
-	def agent_cleanup(self):
-		pass
+        whichEpisode=0
+        
+        def agent_init(self,taskSpec):
+                pass
+                
+        def agent_start(self,observation):
+                return Action()
+        
+        def agent_step(self,reward, observation):
+                return Action()
+        
+        def agent_end(self,reward):
+                pass
+        
+        def agent_cleanup(self):
+                pass
 
-	def agent_message(self,inMessage):
-		if inMessage==None:
-			return "null"
+        def agent_message(self,inMessage):
+                if inMessage==None:
+                        return "null"
 
-		if inMessage=="":
-			return "empty"
+                if inMessage=="":
+                        return "empty"
 
-		if inMessage=="null":
-			return None
+                if inMessage=="null":
+                        return None
 
-		if inMessage=="empty":
-			return ""
-		
-		return inMessage;
+                if inMessage=="empty":
+                        return ""
+                
+                return inMessage;
 
 
 if __name__=="__main__":
-	AgentLoader.loadAgent(test_message_agent())
+        AgentLoader.loadAgent(test_message_agent())

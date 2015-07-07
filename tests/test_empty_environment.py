@@ -29,40 +29,40 @@ from rlglue.types import Action
 from rlglue.types import Reward_observation_terminal
 
 class test_empty_environment(Environment):
-	whichEpisode=0
-	emptyObservation=Observation()
-	nonEmptyObservation=Observation(2,4,5)
+        whichEpisode=0
+        emptyObservation=Observation()
+        nonEmptyObservation=Observation(2,4,5)
 
-	def env_init(self):  
-		self.nonEmptyObservation.intArray=[0,1]
-		self.nonEmptyObservation.doubleArray=[0.0/4.0,1.0/4.0,2.0/4.0,3.0/4.0]
-		self.nonEmptyObservation.charArray=['a','b','c','d','e']
-		return ""
+        def env_init(self):  
+                self.nonEmptyObservation.intArray=[0,1]
+                self.nonEmptyObservation.doubleArray=[0.0/4.0,1.0/4.0,2.0/4.0,3.0/4.0]
+                self.nonEmptyObservation.charArray=['a','b','c','d','e']
+                return ""
 
-	def env_start(self):
-		self.whichEpisode=self.whichEpisode+1
-		
-		
-		if self.whichEpisode % 2 == 0:
-			return self.emptyObservation
-		else:
-			return self.nonEmptyObservation
-	
-	def env_step(self,action):
-		ro=Reward_observation_terminal()
-		
-		if self.whichEpisode % 2 == 0:
-			ro.o=self.emptyObservation
-		else:
-			ro.o=self.nonEmptyObservation
+        def env_start(self):
+                self.whichEpisode=self.whichEpisode+1
+                
+                
+                if self.whichEpisode % 2 == 0:
+                        return self.emptyObservation
+                else:
+                        return self.nonEmptyObservation
+        
+        def env_step(self,action):
+                ro=Reward_observation_terminal()
+                
+                if self.whichEpisode % 2 == 0:
+                        ro.o=self.emptyObservation
+                else:
+                        ro.o=self.nonEmptyObservation
 
-		return ro	
+                return ro        
 
-	def env_cleanup(self):
-		pass
+        def env_cleanup(self):
+                pass
 
-	def env_message(self,inMessage):
-		return None
-	
+        def env_message(self,inMessage):
+                return None
+        
 if __name__=="__main__":
-	EnvironmentLoader.loadEnvironment(test_empty_environment())
+        EnvironmentLoader.loadEnvironment(test_empty_environment())

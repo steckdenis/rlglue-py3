@@ -31,49 +31,49 @@ task_spec=RLGlue.RL_init()
 
 
 for whichEpisode in range(1, 5):
-	startTuple=RLGlue.RL_start()
-	
-	if(whichEpisode%2==0):
-		tester.check_fail(len(startTuple.a.intArray)!=0)
-		tester.check_fail(len(startTuple.a.doubleArray)!=0)
-		tester.check_fail(len(startTuple.a.charArray)!=0)
+        startTuple=RLGlue.RL_start()
+        
+        if(whichEpisode%2==0):
+                tester.check_fail(len(startTuple.a.intArray)!=0)
+                tester.check_fail(len(startTuple.a.doubleArray)!=0)
+                tester.check_fail(len(startTuple.a.charArray)!=0)
 
-		tester.check_fail(len(startTuple.o.intArray)!=0)
-		tester.check_fail(len(startTuple.o.doubleArray)!=0)
-		tester.check_fail(len(startTuple.o.charArray)!=0)
-	else:
-		tester.check_fail(len(startTuple.a.intArray)!=7)
-		tester.check_fail(len(startTuple.a.doubleArray)!=3)
-		tester.check_fail(len(startTuple.a.charArray)!=1)
+                tester.check_fail(len(startTuple.o.intArray)!=0)
+                tester.check_fail(len(startTuple.o.doubleArray)!=0)
+                tester.check_fail(len(startTuple.o.charArray)!=0)
+        else:
+                tester.check_fail(len(startTuple.a.intArray)!=7)
+                tester.check_fail(len(startTuple.a.doubleArray)!=3)
+                tester.check_fail(len(startTuple.a.charArray)!=1)
 
-		tester.check_fail(len(startTuple.o.intArray)!=2)
-		tester.check_fail(len(startTuple.o.doubleArray)!=4)
-		tester.check_fail(len(startTuple.o.charArray)!=5)
-	
-	
-	for whichStep in range(0,5):
-		stepTuple=RLGlue.RL_step()
-		tester.check_fail(stepTuple.terminal!=0)
-		tester.check_fail(stepTuple.r!=0)
+                tester.check_fail(len(startTuple.o.intArray)!=2)
+                tester.check_fail(len(startTuple.o.doubleArray)!=4)
+                tester.check_fail(len(startTuple.o.charArray)!=5)
+        
+        
+        for whichStep in range(0,5):
+                stepTuple=RLGlue.RL_step()
+                tester.check_fail(stepTuple.terminal!=0)
+                tester.check_fail(stepTuple.r!=0)
 
-		if(whichEpisode%2==0):
-			tester.check_fail(len(stepTuple.a.intArray)!=0)
-			tester.check_fail(len(stepTuple.a.doubleArray)!=0)
-			tester.check_fail(len(stepTuple.a.charArray)!=0)
+                if(whichEpisode%2==0):
+                        tester.check_fail(len(stepTuple.a.intArray)!=0)
+                        tester.check_fail(len(stepTuple.a.doubleArray)!=0)
+                        tester.check_fail(len(stepTuple.a.charArray)!=0)
 
-			tester.check_fail(len(stepTuple.o.intArray)!=0)
-			tester.check_fail(len(stepTuple.o.doubleArray)!=0)
-			tester.check_fail(len(stepTuple.o.charArray)!=0)
-		else:
-			tester.check_fail(len(stepTuple.a.intArray)!=7)
-			tester.check_fail(len(stepTuple.a.doubleArray)!=3)
-			tester.check_fail(len(stepTuple.a.charArray)!=1)
+                        tester.check_fail(len(stepTuple.o.intArray)!=0)
+                        tester.check_fail(len(stepTuple.o.doubleArray)!=0)
+                        tester.check_fail(len(stepTuple.o.charArray)!=0)
+                else:
+                        tester.check_fail(len(stepTuple.a.intArray)!=7)
+                        tester.check_fail(len(stepTuple.a.doubleArray)!=3)
+                        tester.check_fail(len(stepTuple.a.charArray)!=1)
 
-			tester.check_fail(len(stepTuple.o.intArray)!=2)
-			tester.check_fail(len(stepTuple.o.doubleArray)!=4)
-			tester.check_fail(len(stepTuple.o.charArray)!=5)
-		
+                        tester.check_fail(len(stepTuple.o.intArray)!=2)
+                        tester.check_fail(len(stepTuple.o.doubleArray)!=4)
+                        tester.check_fail(len(stepTuple.o.charArray)!=5)
+                
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 

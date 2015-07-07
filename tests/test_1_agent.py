@@ -30,48 +30,48 @@ from rlglue.types import Action
 from rlglue.types import Observation
 
 class test_1_agent(Agent):
-	stepCount=0
-	
-	
-	def agent_init(self,taskSpec):
-		self.stepCount=0
-		
-	def agent_start(self,observation):
-		self.stepCount=0
-		action=Action()
-		action.intArray=observation.intArray
-		action.doubleArray=observation.doubleArray
-		action.charArray=observation.charArray
-		
-		return action
-	
-	def agent_step(self,reward, observation):
-		self.stepCount=self.stepCount+1
-		action=Action()
-		action.intArray=observation.intArray
-		action.doubleArray=observation.doubleArray
-		action.charArray=observation.charArray
-		
-		return action
-	
-	def agent_end(self,reward):
-		pass
-	
-	def agent_cleanup(self):
-		pass
-	
-	def agent_message(self,inMessage):
-		timesToPrint=self.stepCount%3
-		
-		outMessage=inMessage+"|"
-		for i in range(0, timesToPrint):
-			outMessage=outMessage+"%d" % (self.stepCount)
-			outMessage=outMessage+"."
+        stepCount=0
+        
+        
+        def agent_init(self,taskSpec):
+                self.stepCount=0
+                
+        def agent_start(self,observation):
+                self.stepCount=0
+                action=Action()
+                action.intArray=observation.intArray
+                action.doubleArray=observation.doubleArray
+                action.charArray=observation.charArray
+                
+                return action
+        
+        def agent_step(self,reward, observation):
+                self.stepCount=self.stepCount+1
+                action=Action()
+                action.intArray=observation.intArray
+                action.doubleArray=observation.doubleArray
+                action.charArray=observation.charArray
+                
+                return action
+        
+        def agent_end(self,reward):
+                pass
+        
+        def agent_cleanup(self):
+                pass
+        
+        def agent_message(self,inMessage):
+                timesToPrint=self.stepCount%3
+                
+                outMessage=inMessage+"|"
+                for i in range(0, timesToPrint):
+                        outMessage=outMessage+"%d" % (self.stepCount)
+                        outMessage=outMessage+"."
 
-		outMessage=outMessage+"|"+inMessage
-		
-		return outMessage
+                outMessage=outMessage+"|"+inMessage
+                
+                return outMessage
 
 
 if __name__=="__main__":
-	AgentLoader.loadAgent(test_1_agent())
+        AgentLoader.loadAgent(test_1_agent())

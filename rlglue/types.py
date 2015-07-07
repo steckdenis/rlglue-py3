@@ -25,84 +25,84 @@
 import copy
 
 class RL_Abstract_Type:
-	def __init__(self,numInts=None,numDoubles=None,numChars=None):
-		self.intArray = []
-		self.doubleArray = []
-		self.charArray = []
-		if numInts != None:
-			self.intArray = [0]*numInts
-		if numDoubles != None:
-			self.doubleArray = [0.0]*numDoubles
-		if numChars != None:
-			self.charArray = ['']*numChars
+        def __init__(self,numInts=None,numDoubles=None,numChars=None):
+                self.intArray = []
+                self.doubleArray = []
+                self.charArray = []
+                if numInts != None:
+                        self.intArray = [0]*numInts
+                if numDoubles != None:
+                        self.doubleArray = [0.0]*numDoubles
+                if numChars != None:
+                        self.charArray = ['']*numChars
 
-	def sameAs(self,otherAbstractType):
-		return self.intArray==otherAbstractType.intArray and self.doubleArray==otherAbstractType.doubleArray and self.charArray==otherAbstractType.charArray
+        def sameAs(self,otherAbstractType):
+                return self.intArray==otherAbstractType.intArray and self.doubleArray==otherAbstractType.doubleArray and self.charArray==otherAbstractType.charArray
 
-	#this coolness added by btanner sept 30/2008
-	#it allows the subclasses to be used like myAction=Action.fromAbstractType(someAbstractType)
-	@classmethod
-	def fromAbstractType(cls, theAbstractType):	
-		retStruct=cls()
-		retStruct.intArray=copy.deepcopy(theAbstractType.intArray)
-		retStruct.doubleArray=copy.deepcopy(theAbstractType.doubleArray)
-		retStruct.charArray=copy.deepcopy(theAbstractType.charArray)
-		return retStruct
-	
+        #this coolness added by btanner sept 30/2008
+        #it allows the subclasses to be used like myAction=Action.fromAbstractType(someAbstractType)
+        @classmethod
+        def fromAbstractType(cls, theAbstractType):        
+                retStruct=cls()
+                retStruct.intArray=copy.deepcopy(theAbstractType.intArray)
+                retStruct.doubleArray=copy.deepcopy(theAbstractType.doubleArray)
+                retStruct.charArray=copy.deepcopy(theAbstractType.charArray)
+                return retStruct
+        
 class Action(RL_Abstract_Type):
-	def __init__(self,numInts=None,numDoubles=None,numChars=None):
-		RL_Abstract_Type.__init__(self,numInts,numDoubles,numChars)
-	
-	    
+        def __init__(self,numInts=None,numDoubles=None,numChars=None):
+                RL_Abstract_Type.__init__(self,numInts,numDoubles,numChars)
+        
+            
 
 class Observation(RL_Abstract_Type):
-	def __init__(self,numInts=None,numDoubles=None,numChars=None):
-		RL_Abstract_Type.__init__(self,numInts,numDoubles,numChars)
+        def __init__(self,numInts=None,numDoubles=None,numChars=None):
+                RL_Abstract_Type.__init__(self,numInts,numDoubles,numChars)
 
 
 class Observation_action:
-	def __init__(self,theObservation=None,theAction=None):
-		if theObservation != None:
-			self.o = theObservation
-		else:
-			self.o = Observation()
-		if theAction != None:
-			self.a = theAction
-		else:
-			self.a = Action()
+        def __init__(self,theObservation=None,theAction=None):
+                if theObservation != None:
+                        self.o = theObservation
+                else:
+                        self.o = Observation()
+                if theAction != None:
+                        self.a = theAction
+                else:
+                        self.a = Action()
 
 class Reward_observation_terminal:
-	def __init__(self,reward=None, theObservation=None, terminal=None):
-		if reward != None:
-			self.r = reward
-		else:
-			self.r = 0.0
-		if theObservation != None:
-			self.o = theObservation
-		else:
-			self.o = Observation()
-		if terminal != None:
-			self.terminal = terminal
-		else:
-			self.terminal = False
+        def __init__(self,reward=None, theObservation=None, terminal=None):
+                if reward != None:
+                        self.r = reward
+                else:
+                        self.r = 0.0
+                if theObservation != None:
+                        self.o = theObservation
+                else:
+                        self.o = Observation()
+                if terminal != None:
+                        self.terminal = terminal
+                else:
+                        self.terminal = False
 
 class Reward_observation_action_terminal:
-	def __init__(self,reward=None, theObservation=None, theAction=None, terminal=None):
-		if reward != None:
-			self.r = reward
-		else:
-			self.r = 0.0
-		if theObservation != None:
-			self.o = theObservation
-		else:
-			self.o = Observation()
-		if theAction != None:
-			self.a = theAction
-		else:
-			self.a = Action()
-		if terminal != None:
-			self.terminal = terminal
-		else:
-			self.terminal = False
-	
+        def __init__(self,reward=None, theObservation=None, theAction=None, terminal=None):
+                if reward != None:
+                        self.r = reward
+                else:
+                        self.r = 0.0
+                if theObservation != None:
+                        self.o = theObservation
+                else:
+                        self.o = Observation()
+                if theAction != None:
+                        self.a = theAction
+                else:
+                        self.a = Action()
+                if terminal != None:
+                        self.terminal = terminal
+                else:
+                        self.terminal = False
+        
 

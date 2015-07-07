@@ -28,39 +28,39 @@ from rlglue.types import Action
 from rlglue.types import Observation
 
 class test_empty_agent(Agent):
-	whichEpisode=0
-	emptyAction=Action(0,0,0)
-	nonEmptyAction=Action(7,3,1)
-	
-	def agent_init(self,taskSpec):
-		self.whichEpisode=0
-		self.nonEmptyAction.intArray=(0,1,2,3,4,5,6)
-		self.nonEmptyAction.doubleArray=(0.0/3.0,1.0/3.0,2.0/3.0)
-		self.nonEmptyAction.charArray=('a')
-		
-	def agent_start(self,observation):
-		self.whichEpisode=self.whichEpisode+1
-		
-		if self.whichEpisode%2==0:
-			return self.emptyAction
-		else:
-			return self.nonEmptyAction
-	
-	def agent_step(self,reward, observation):
-		if self.whichEpisode % 2 == 0:
-			return self.emptyAction
-		else:
-			return self.nonEmptyAction
-	
-	def agent_end(self,reward):
-		pass
-	
-	def agent_cleanup(self):
-		pass
-	
-	def agent_message(self,inMessage):
-		return ""
-		
+        whichEpisode=0
+        emptyAction=Action(0,0,0)
+        nonEmptyAction=Action(7,3,1)
+        
+        def agent_init(self,taskSpec):
+                self.whichEpisode=0
+                self.nonEmptyAction.intArray=(0,1,2,3,4,5,6)
+                self.nonEmptyAction.doubleArray=(0.0/3.0,1.0/3.0,2.0/3.0)
+                self.nonEmptyAction.charArray=('a')
+                
+        def agent_start(self,observation):
+                self.whichEpisode=self.whichEpisode+1
+                
+                if self.whichEpisode%2==0:
+                        return self.emptyAction
+                else:
+                        return self.nonEmptyAction
+        
+        def agent_step(self,reward, observation):
+                if self.whichEpisode % 2 == 0:
+                        return self.emptyAction
+                else:
+                        return self.nonEmptyAction
+        
+        def agent_end(self,reward):
+                pass
+        
+        def agent_cleanup(self):
+                pass
+        
+        def agent_message(self,inMessage):
+                return ""
+                
 
 if __name__=="__main__":
-	AgentLoader.loadAgent(test_empty_agent())
+        AgentLoader.loadAgent(test_empty_agent())

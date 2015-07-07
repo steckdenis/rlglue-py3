@@ -57,7 +57,7 @@ tester.check_fail(roat.terminal!=0);
 tester.check_fail(roat.r!=1.0);
 tester.check_fail(len(roat.o.intArray)!=1);
 tester.check_fail(len(roat.o. doubleArray)!=0);
-tester.check_fail(len(roat.o. charArray)!=0);	
+tester.check_fail(len(roat.o. charArray)!=0);        
 tester.check_fail(roat.o.intArray[0]!=2);
 
 roat=RLGlue.RL_step();
@@ -99,6 +99,6 @@ tester.check_fail(roat.o.charArray[2]!='?');
 tester.check_fail(roat.o.charArray[3]!=' ');
 tester.check_fail(roat.o.charArray[4]!='&');
 
-print tester.get_summary()
+print(tester.get_summary())
 sys.exit(tester.getFailCount())
 

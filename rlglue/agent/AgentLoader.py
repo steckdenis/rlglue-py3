@@ -24,46 +24,46 @@
 import sys
 import os
 import rlglue.network.Network as Network
-from ClientAgent import ClientAgent
+from .ClientAgent import ClientAgent
 
 from rlglue.versions import get_svn_codec_version
 from rlglue.versions import get_codec_version
 
 def loadAgent(theAgent):
-	theSVNVersion=get_svn_codec_version()
-	theCodecVersion=get_codec_version()
-	client = ClientAgent(theAgent)
+        theSVNVersion=get_svn_codec_version()
+        theCodecVersion=get_codec_version()
+        client = ClientAgent(theAgent)
 
-	host = Network.kLocalHost
-	port = Network.kDefaultPort
+        host = Network.kLocalHost
+        port = Network.kDefaultPort
 
-	hostString = os.getenv("RLGLUE_HOST")
-	portString = os.getenv("RLGLUE_PORT")
+        hostString = os.getenv("RLGLUE_HOST")
+        portString = os.getenv("RLGLUE_PORT")
 
-	if (hostString != None):
-		host = hostString
+        if (hostString != None):
+                host = hostString
 
-	try:
-		port = int(portString)
-	except TypeError:
-		port = Network.kDefaultPort
-		
+        try:
+                port = int(portString)
+        except TypeError:
+                port = Network.kDefaultPort
+                
 
-	print "RL-Glue Python Agent Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")"
-	print "\tConnecting to " + host + " on port " + str(port) + "..."
-	sys.stdout.flush()
+        print("RL-Glue Python Agent Codec Version: "+theCodecVersion+" (Build "+theSVNVersion+")")
+        print("\tConnecting to " + host + " on port " + str(port) + "...")
+        sys.stdout.flush()
 
-	client.connect(host, port, Network.kRetryTimeout)
-	print "\t Agent Codec Connected"
-	client.runAgentEventLoop()
-	client.close()
+        client.connect(host, port, Network.kRetryTimeout)
+        print("\t Agent Codec Connected")
+        client.runAgentEventLoop()
+        client.close()
 
 
 def loadAgentLikeScript():
-	agentModule = __import__(sys.argv[1])
-	agentClass = getattr(agentModule,sys.argv[1])
-	agent = agentClass()
+        agentModule = __import__(sys.argv[1])
+        agentClass = getattr(agentModule,sys.argv[1])
+        agent = agentClass()
 
-	client = ClientAgent(agent)
+        client = ClientAgent(agent)
 
-	loadAgent(agent)
+        loadAgent(agent)

@@ -30,32 +30,32 @@ from rlglue.types import Reward_observation_terminal
 
 class test_message_environment(Environment):
 
-	def env_init(self):  
-		return ""
+        def env_init(self):  
+                return ""
 
-	def env_start(self):
-		return Observation()
-	
-	def env_step(self,action):
-		return Reward_observation_terminal()
+        def env_start(self):
+                return Observation()
+        
+        def env_step(self,action):
+                return Reward_observation_terminal()
 
-	def env_cleanup(self):
-		pass
-	
-	def env_message(self,inMessage):
-		if inMessage==None:
-			return "null"
+        def env_cleanup(self):
+                pass
+        
+        def env_message(self,inMessage):
+                if inMessage==None:
+                        return "null"
 
-		if inMessage=="":
-			return "empty"
+                if inMessage=="":
+                        return "empty"
 
-		if inMessage=="null":
-			return None
+                if inMessage=="null":
+                        return None
 
-		if inMessage=="empty":
-			return ""
-		
-		return inMessage;	
+                if inMessage=="empty":
+                        return ""
+                
+                return inMessage;        
 
 if __name__=="__main__":
-	EnvironmentLoader.loadEnvironment(test_message_environment())
+        EnvironmentLoader.loadEnvironment(test_message_environment())

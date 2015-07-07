@@ -27,17 +27,17 @@ import rlglue.network.Network as Network
 from ClientEnvironment import ClientEnvironment
 import EnvironmentLoader as EnvironmentLoader
 def main():
-	usage = "PYTHONPATH=<Path to RLGlue> python -c 'import rlglue.environment.EnvironmentLoaderScript' <Environment>";
+        usage = "PYTHONPATH=<Path to RLGlue> python -c 'import rlglue.environment.EnvironmentLoaderScript' <Environment>";
 
-	envVars = "The following environment variables are used by the environment to control its function:\n" + \
-	"RLGLUE_HOST  : If set the agent will use this ip or hostname to connect to rather than " + Network.kLocalHost + "\n" + \
-	"RLGLUE_PORT  : If set the agent will use this port to connect on rather than " + str(Network.kDefaultPort) + "\n"
+        envVars = "The following environment variables are used by the environment to control its function:\n" + \
+        "RLGLUE_HOST  : If set the agent will use this ip or hostname to connect to rather than " + Network.kLocalHost + "\n" + \
+        "RLGLUE_PORT  : If set the agent will use this port to connect on rather than " + str(Network.kDefaultPort) + "\n"
 
-	if (len(sys.argv) < 2):
-		print usage
-		print envVars
-		sys.exit(1)
-	
-	EnvironmentLoader.loadEnvironmentLikeScript()
+        if (len(sys.argv) < 2):
+                print(usage)
+                print(envVars)
+                sys.exit(1)
+        
+        EnvironmentLoader.loadEnvironmentLikeScript()
 
 main()
